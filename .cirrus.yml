@@ -1,0 +1,43 @@
+env:
+# ENCRYPTED
+  RCLONECONFIG_DRIVE: ""
+  TG_TOKEN: ""
+  TG_CHAT_ID: ""
+  CREDENTIALS: ""
+
+# FLAG
+  WORKDIR: "/tmp"
+  CIRRUS_CLONE_DEPTH: "1"
+
+task:
+  name: "Setting Up"
+  skip: $CIRRUS_BRANCH == 'main'
+  only_if: $CIRRUS_REPO_OWNER == 'github'
+  timeout_in: 120m
+  container:
+    image: kanjoet/ubuntu:22.04
+    cpu: 8
+    memory: 32G
+
+  Mengload-ccache_background_script:
+     - ./scripts/loading_ccache.sh
+
+  local-mani_script:
+     - git config --global user.name "USER"
+     - git config --global user.email "EMAIL"
+     - echo "$CREDENTIALS" > ~/.git-credentials
+     - git config --global credential.helper store --file=~/.git-credentials
+
+  Sync_script:
+     - ./scripts/sync.sh
+
+  Build_script:
+     - ./scripts/building.sh
+
+  Ccach-statusinfo_script:
+     - set -e
+     - export CCACHE_DIR=$WORKDIR/ccache
+     - ccache -s
+
+  UploadROM_script:
+     - ./scripts/collecting.sh
