@@ -21,7 +21,7 @@ task:
 
   Mengload-ccache_background_script:
      - ./scripts/loading_ccache.sh
-
+     
   local-mani_script:
      - git config --global user.name "hklknz"
      - git config --global user.email "haikalluthfianinobaluqia598@gmail.com"
@@ -30,10 +30,10 @@ task:
 
   Sync_script:
      - ./scripts/sync.sh
-
+     
   Build_script:
      - ./scripts/building.sh
-
+     
   Ccach-statusinfo_script:
      - set -e
      - export CCACHE_DIR=$WORKDIR/ccache
@@ -41,3 +41,4 @@ task:
 
   UploadROM_script:
      - ./scripts/collecting.sh
+
