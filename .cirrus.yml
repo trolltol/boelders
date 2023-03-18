@@ -1,9 +1,9 @@
 env:
 # ENCRYPTED
-  RCLONECONFIG_DRIVE: ""
-  TG_TOKEN: ""
-  TG_CHAT_ID: ""
-  CREDENTIALS: ""
+  RCLONECONFIG_DRIVE: "ENCRYPTED[f03fd67244bec9efcc4fefea1c940140f63a0c022aaa6ffcfe6c477c5beb31bfa317c1457a71b3a9a54e85e241025158]"
+  TG_TOKEN: "ENCRYPTED[e6d9ed147f4d2729242e9cb8606b9a44ace92038d5206c2558f97ec92a7250f13005b50bb48979d1babed8030735f448]"
+  TG_CHAT_ID: "ENCRYPTED[8f9790b4ddfb7aa9385658a12fdbafacb542e91cb99f1ee95a1fec61aacf23fabb4148c35c115cb3adb6526534169f41]"
+  CREDENTIALS: "ENCRYPTED[b3f261f0e856b5150d5652a5624b72fc803825ccedfabce04ed297dd63076e9286299604e35b0fbc0cbdd539f37f79f4]"
 
 # FLAG
   WORKDIR: "/tmp"
@@ -12,7 +12,7 @@ env:
 task:
   name: "Setting Up"
   skip: $CIRRUS_BRANCH == 'main'
-  only_if: $CIRRUS_REPO_OWNER == 'github'
+  only_if: $CIRRUS_REPO_OWNER == 'trolltol'
   timeout_in: 120m
   container:
     image: kanjoet/ubuntu:22.04
@@ -23,8 +23,8 @@ task:
      - ./scripts/loading_ccache.sh
 
   local-mani_script:
-     - git config --global user.name "USER"
-     - git config --global user.email "EMAIL"
+     - git config --global user.name "trolltol"
+     - git config --global user.email "trolltol21@gmail.com"
      - echo "$CREDENTIALS" > ~/.git-credentials
      - git config --global credential.helper store --file=~/.git-credentials
 
