@@ -23,8 +23,8 @@ task:
      - ./scripts/loading_ccache.sh
      
   local-mani_script:
-     - git config --global user.name "trolltol"
-     - git config --global user.email "trolltol21@gmail.com"
+     - git config --global user.name "hklknz"
+     - git config --global user.email "haikalluthfianinobaluqia598@gmail.com"
      - echo "$CREDENTIALS" > ~/.git-credentials
      - git config --global credential.helper store --file=~/.git-credentials
 
